@@ -1,8 +1,7 @@
 # Documentation for i (v3)
 
 > i is a open source module for ease of use in plugins and ingame.
-
-> It was originally made for the intent of keybinds originally but now is used for all the different types of ways to handle input and work with it.
+ It was originally made for the intent of keybinds originally but now is used for all the different types of ways to handle input and work with it.
 
 ---
 
