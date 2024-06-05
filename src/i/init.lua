@@ -368,8 +368,28 @@ function i.Clear()
     end
 end
 
-return function(plugin)
+return function(plugin, ...)
     i.plugin = if typeof(plugin) == "Instance" and plugin:IsA("Plugin") then plugin else nil
 
-    return setmetatable(i, t)
+    i.extern = {...}
+
+    do
+        for _,module in pairs(i.extern) do
+            if t.instance("ModuleScript")(module) then
+                local data = require(module)
+                
+                if t.callback(data) then
+                    data(plugin, i, t)
+                elseif t.table(data) then
+                    for k,v in pairs(data) do
+                        i[k] = v
+                    end
+                else
+                    i[module.Name] = data
+                end
+            end
+        end
+    end
+
+    return i
 end
